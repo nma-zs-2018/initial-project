@@ -1,12 +1,12 @@
 .PHONY: all
-all: build migrate run
+all: pull build migrate run
 
 
 # Pulls git
 pull:
 	git pull
 
-# Build the three containers
+# Build containers
 # Images are automatically fetched, if necessary, from docker hub
 build:
 	docker-compose build
