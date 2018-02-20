@@ -8,6 +8,8 @@ services:
       - "80:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
+      - ./static:/code/static
+      - ./media:/code/media
     depends_on:
       - web
   web:
