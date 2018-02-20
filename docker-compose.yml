@@ -12,9 +12,39 @@ services:
       - ./media:/code/media
     depends_on:
       - web
+
   web:
     build: .
+    env_file: '.env'
     volumes:
       - .:/code
     ports:
       - "8000:8000"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    env_file: '.env'
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  pgadmin:
+    links:
+      - postgres:postgres
+    image: fenglc/pgadmin4
+    environment:
+      DEFAULT_USER: change@me.lt
+      DEFAULT_PASSWORD: changeme
+    volumes:
+       - pgadmin:/root/.pgadmin
+    ports:
+      - "5050:5050"
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  pgadmin:

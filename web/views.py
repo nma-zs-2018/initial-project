@@ -7,3 +7,7 @@ def index(request):
     students = Student.objects.all()
 
     return render(request, 'index.html', {'students': students})
+
+
+def bootstrap(request):
+    return render(request, 'bootstrap.html')
