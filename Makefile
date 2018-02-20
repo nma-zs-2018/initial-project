@@ -23,3 +23,8 @@ migrate:
 # Run everything in the background with -d
 run:
 	docker-compose up -d
+
+# Stop docker containers
+stop:
+	docker-compose down
+
